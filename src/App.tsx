@@ -1,5 +1,10 @@
 import "./App.css";
 import { useState } from "react";
+//@ts-ignore
+import Sound from 'react-sound';
+//@ts-ignore
+import roulette_sound from './sound/bau-da-felicidade.mp3';
+
 
 interface Movie {
   name: string;
@@ -42,7 +47,21 @@ function App() {
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
+    stopSound()
   };
+
+  function handleStartButton() {
+    startRotation()
+    startSound()
+  }
+
+  function startSound() {
+    setStatusSound(Sound.status.PLAYING)
+  }
+
+  function stopSound() {
+    setStatusSound(Sound.status.STOPPED)
+  }
 
   function createManyPieces(n = 20) {
     function getTransform(angle: number, i: number) {
@@ -92,6 +111,7 @@ function App() {
     return pieces;
   }
 
+  const [statusSound, setStatusSound] = useState (Sound.status.STOPPED)
   return (
     <div >
       <h3 className="title">Noite de filme!</h3>
@@ -100,9 +120,15 @@ function App() {
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
       </Circle>
-      <button className="spin-button" onClick={startRotation}>Gira a roleta!</button>
+      <button className="spin-button" onClick={handleStartButton}>Gira a roleta!</button>
 
       <button className="spin-button" onClick={stopRotation}>PARA TUDO!</button>
+      
+      <Sound
+          url={roulette_sound}
+          playStatus={statusSound}
+          playFromPosition={300 /* in milliseconds */}
+        />
     </div>
   );
 }

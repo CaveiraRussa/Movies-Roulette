@@ -23,3 +23,15 @@
 .hidden{
   visibility: hidden;
 }
+
+.spin-button{
+  background-color: rgba(66, 66, 66, 0.76);
+  margin: 10px;
+  height: 80px;
+  width: 180px; 
+  border-radius: 10px; 
+  border: darkcyan;;
+  border: 5px solid rgb(156, 57, 11);
+  background-blend-mode: hue;
+  color: rgb(207, 114, 0);
+}
