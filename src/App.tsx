@@ -32,16 +32,28 @@ function App() {
 
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
-  //const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(1);
 
   function startRotation() {
     setIsStart(false);
     setIsRotate(true);
+    rodandoRodando(true)
   };
 
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
+    rodandoRodando(false)
+  };
+
+  function rodandoRodando(stop:boolean) {
+    let i = 0;
+    while(stop){
+      i= Math.floor(Math.random() * (20 - 1)) + 1;
+    }
+    if(!stop){
+      setIndex(i);
+    }
   };
 
   function createManyPieces(n = 20) {
@@ -95,7 +107,7 @@ function App() {
   return (
     <div >
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: </h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {index} </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
