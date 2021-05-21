@@ -1,6 +1,7 @@
 .start-rotate{
   animation: start-rotate 1s linear infinite;
 }
+
 @keyframes start-rotate{
   100%{
     transform: rotate(360deg);
@@ -9,4 +10,8 @@
 
 .stop-rotate{
   animation-play-state: paused;
+}
+
+.piece {
+  overflow: hidden;
 }
