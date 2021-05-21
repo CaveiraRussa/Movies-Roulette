@@ -57,7 +57,7 @@ function App() {
 
     const pieces = [];
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 1; i < n; i++) {
       const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
       const angle = 360 / n;
@@ -79,8 +79,10 @@ function App() {
         >
           <div className="piece" contentEditable="true" spellCheck="false">
             <img
-              style={{ overflow: "hidden", width: "200px", height: "auto" }}
-              src={`./img/mini${i + 1}.jpg`}
+              style={{ overflow: "hidden", height: "auto", maxWidth: "100%",
+              maxHeight: "100%", objectFit: "fill"
+           }}
+              src={`./img/mini${i}.jpg`}
             />
           </div>
         </li>
