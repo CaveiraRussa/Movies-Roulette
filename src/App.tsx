@@ -57,7 +57,7 @@ function App() {
 
     const pieces = [];
 
-    for (let i = 1; i < n; i++) {
+    for (let i = 1; i <= n; i++) {
       const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
       const angle = 360 / n;
