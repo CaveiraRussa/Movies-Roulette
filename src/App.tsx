@@ -34,16 +34,31 @@ function App() {
 
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
+  const [index, setIndex] = useState(1);
 
   function startRotation() {
     setIsStart(false);
     setIsRotate(true);
   };
 
+
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
   };
+
+  let n = 21;
+  let i = 0;
+  if(isRotate){
+    for (i = 0; i <= n+1; i++) {
+    if( i === 20){
+      n=0;
+    }
+  }
+  }
+  if(!isRotate && isStart){
+    setIndex(i)
+  }
 
   function createManyPieces(n = 150) {
     function getTransform(angle: number, i: number) {
@@ -92,9 +107,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div contentEditable="true">
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor:</h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {index} </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
