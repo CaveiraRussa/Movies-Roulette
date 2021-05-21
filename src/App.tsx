@@ -1,6 +1,4 @@
-import React from "react";
 import "./App.css";
-import mini1 from "./img/mini1.png";
 import { useState } from "react";
 
 interface Movie {
@@ -34,33 +32,19 @@ function App() {
 
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
-  const [index, setIndex] = useState(1);
+  //const [index, setIndex] = useState(1);
 
   function startRotation() {
     setIsStart(false);
     setIsRotate(true);
   };
 
-
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
   };
 
-  let n = 21;
-  let i = 0;
-  if(isRotate){
-    for (i = 0; i <= n+1; i++) {
-    if( i === 20){
-      n=0;
-    }
-  }
-  }
-  if(!isRotate && isStart){
-    setIndex(i)
-  }
-
-  function createManyPieces(n = 150) {
+  function createManyPieces(n = 20) {
     function getTransform(angle: number, i: number) {
       if (n > 2) return `rotate(${angle * i}deg) skewY(${angle - 90}deg)`;
       else
@@ -107,9 +91,9 @@ function App() {
   }
 
   return (
-    <div contentEditable="true">
+    <div >
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {index} </h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
