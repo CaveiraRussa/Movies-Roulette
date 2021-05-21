@@ -15,3 +15,11 @@
 .piece {
   overflow: hidden;
 }
+
+.title{
+  text-align: center;
+  color:white;
+}
+.hidden{
+  visibility: hidden;
+}

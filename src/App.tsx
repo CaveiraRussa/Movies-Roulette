@@ -33,12 +33,15 @@ function App() {
   };*/
 
   const [isRotate, setIsRotate] = useState(false);
+  const [isStart, setIsStart] = useState(false);
 
   function startRotation() {
+    setIsStart(false);
     setIsRotate(true);
   };
 
   function stopRotation() {
+    setIsStart(true);
     setIsRotate(false);
   };
 
@@ -90,14 +93,15 @@ function App() {
 
   return (
     <div>
+      <h3 className="title">Noite de filme!</h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor:</h3>
+      <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
       </Circle>
       <button className="spin-button" onClick={startRotation}>Gira a roleta!</button>
 
-      <button className="spin-button" onClick={stopRotation}>
-        PARA TUDO!
-      </button>
+      <button className="spin-button" onClick={stopRotation}>PARA TUDO!</button>
     </div>
   );
 }
@@ -122,5 +126,4 @@ function Circle(props: any) {
     </div>
   );
 }
-
 export default App;
