@@ -22,6 +22,7 @@
 }
 .hidden{
   visibility: hidden;
+  max-height: 0px;
 }
 
 .spin-button{
