@@ -14,41 +14,129 @@ interface Movie {
 
 const movies: Movie[] = [
   {
-    name: "Star Wars III",
+    name: "Monty Python - E o busca pelo calice sagrado",
     imageLocation: "./img/mini1.jpg",
-    recommendedBy: "Luiz Augusto",
+    recommendedBy: "Luiz Augusto"
   },
+    {
+    name: "Monty Python - Vida de Brian",
+    imageLocation: "./img/mini2.jpg",
+    recommendedBy: "Luiz Augusto"
+  },
+    {
+    name: "Detroid Rock City",
+    imageLocation: "./img/mini3.jpg",
+    recommendedBy: "Luiz Augusto"
+  },
+    {
+    name: "Cães de Aluguel",
+    imageLocation: "./img/mini4.jpg",
+    recommendedBy: "Luiz Augusto"
+  },
+    {
+    name: "Sete homens e um destino",
+    imageLocation: "./img/mini5.jpg",
+    recommendedBy: "Luiz Augusto"
+  },
+    {
+    name: "O contador",
+    imageLocation: "./img/mini6.jpg",
+    recommendedBy: "Bianca"
+  },
+   {
+    name: "Shrek",
+    imageLocation: "./img/mini7.jpg",
+    recommendedBy: "Bianca"
+  },
+   {
+    name: "Spirit O corcel Indomável",
+    imageLocation: "./img/mini8.jpg",
+    recommendedBy: "Bianca"
+  },
+   {
+    name: "Fuja",
+    imageLocation: "./img/mini9.jpg",
+    recommendedBy: "Bianca"
+  },
+   {
+    name: "O lobo de wallstreet",
+    imageLocation: "./img/mini10.jpg",
+    recommendedBy: "Bianca"
+  },
+  {
+    name: "Tom and jerry",
+    imageLocation: "./img/mini11.jpg",
+    recommendedBy: "Suellen"
+  },
+  {
+    name: "Sociedade da justiça segunda guerra mundial",
+    imageLocation: "./img/mini12.jpg",
+    recommendedBy: "Suellen"
+  },
+  {
+    name: "Zack Snyder's Justice League",
+    imageLocation: "./img/mini13.jpg",
+    recommendedBy: "Suellen"
+  },
+  {
+    name: "Scooby doo e a espada",
+    imageLocation: "./img/mini14.jpg",
+    recommendedBy: "Suellen"
+  },
+  {
+    name: "Willy's Wonderland",
+    imageLocation: "./img/mini15.jpg",
+    recommendedBy: "Suellen"
+  },
+  {
+	name: "Day of the dead (85)",
+    imageLocation: "./img/mini16.jpg",
+    recommendedBy: "Conrado"
+  },
+  {
+    name: "Schools of Rock",
+    imageLocation: "./img/mini17.jpg",
+    recommendedBy: "Conrado"
+  },
+  {
+	name: "Dead Society Poets",
+    imageLocation: "./img/mini18.jpg",
+    recommendedBy: "Conrado"
+  },
+  {
+	name: "Scary Movie",
+    imageLocation: "./img/mini19.jpg",
+    recommendedBy: "Conrado"
+  },
+  {
+   name: "Gremlins",
+    imageLocation: "./img/mini20.jpg",
+    recommendedBy: "Conrado"
+  }
 ];
 
 function App() {
-  // const [name, setName] = useState("circle");
-
-  /*const startRotation = () => {
-    setName("circle start-rotate");
-
-    setTimeout(() => {
-      setName(
-        "circle start-rotate stop-rotate " +
-          Math.floor(Math.random() * 10000) +
-          1
-      );
-    });
-  };*/
 
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
-  //const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(1);
 
   function startRotation() {
     setIsStart(false);
     setIsRotate(true);
-  };
+  }
 
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
     stopSound()
-  };
+    generateRandomIndex(movies.length);
+  }
+
+  function generateRandomIndex(count: number) {
+    setIndex(Math.floor(Math.random() * count) + 1);
+  }
+
 
   function handleStartButton() {
     startRotation()
@@ -96,14 +184,14 @@ function App() {
           }}
           key={i}
         >
-          <div className="piece" contentEditable="true" spellCheck="false">
-            <img
-              style={{ overflow: "hidden", height: "auto", maxWidth: "100%",
-              maxHeight: "100%", objectFit: "fill"
-           }}
+           <img
+              style={{
+                overflow: "hidden",
+                height: "auto",
+                width: "100%"
+              }}
               src={`./img/mini${i}.jpg`}
             />
-          </div>
         </li>
       );
     }
@@ -113,17 +201,21 @@ function App() {
 
   const [statusSound, setStatusSound] = useState (Sound.status.STOPPED)
   return (
-    <div >
+    <div>
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: </h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {movies[index].name} </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
-      <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
+      <Circle
+        className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}
+      >
         <ul>{createManyPieces()}</ul>
       </Circle>
       <button className="spin-button" onClick={handleStartButton}>Gira a roleta!</button>
 
-      <button className="spin-button" onClick={stopRotation}>PARA TUDO!</button>
-      
+      <button className="spin-button" onClick={stopRotation}>
+        PARA TUDO!
+      </button>
+
       <Sound
           url={roulette_sound}
           playStatus={statusSound}
@@ -138,8 +230,8 @@ function Circle(props: any) {
     <div
       {...props}
       style={{
-        width: "25em",
-        height: "25em",
+        width: "40em",
+        height: "40em",
         border: "1px solid black",
         position: "relative",
         padding: 0,
