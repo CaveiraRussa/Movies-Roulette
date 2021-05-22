@@ -5,6 +5,7 @@ import roulette_sound from "./sound/bau-da-felicidade.mp3";
 import { movies } from "./data/Movies";
 import { Poster } from "./components/Poster";
 import { Roulette } from "./components/Roulette";
+import { PosterContainer } from "./containers/PosterContainer";
 
 function App() {
   const [isRotate, setIsRotate] = useState(false);
@@ -43,17 +44,12 @@ function App() {
 
   return (
     <div>
-      <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>
-        Vencedor: {movies[index - 1].name}{" "}
-      </h3>
-
-      <Poster className={isStart ? "title" : "hidden"} teste={index} />
-
-      <h3 className={isStart ? "title" : "hidden"}>
-        Recomendado por: {movies[index - 1].recommendedBy}{" "}
-      </h3>
-      <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
+      <PosterContainer
+        index={index}
+        isRotate={isRotate}
+        isStart={isStart}
+        movies={movies}
+      />
 
       <Roulette isRotate={isRotate} movies={movies} />
 
