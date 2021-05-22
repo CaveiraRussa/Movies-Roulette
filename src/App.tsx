@@ -1,125 +1,16 @@
 import "./App.css";
 import { useState } from "react";
 //@ts-ignore
-import Sound from 'react-sound';
-//@ts-ignore
-import roulette_sound from './sound/bau-da-felicidade.mp3';
-
-
-interface Movie {
-  name: string;
-  imageLocation: string;
-  recommendedBy: string;
-}
-
-const movies: Movie[] = [
-  {
-    name: "Monty Python - E o busca pelo calice sagrado",
-    imageLocation: "./img/mini1.jpg",
-    recommendedBy: "Luiz Augusto"
-  },
-    {
-    name: "Monty Python - Vida de Brian",
-    imageLocation: "./img/mini2.jpg",
-    recommendedBy: "Luiz Augusto"
-  },
-    {
-    name: "Detroid Rock City",
-    imageLocation: "./img/mini3.jpg",
-    recommendedBy: "Luiz Augusto"
-  },
-    {
-    name: "Cães de Aluguel",
-    imageLocation: "./img/mini4.jpg",
-    recommendedBy: "Luiz Augusto"
-  },
-    {
-    name: "Sete homens e um destino",
-    imageLocation: "./img/mini5.jpg",
-    recommendedBy: "Luiz Augusto"
-  },
-    {
-    name: "O contador",
-    imageLocation: "./img/mini6.jpg",
-    recommendedBy: "Bianca"
-  },
-   {
-    name: "Shrek",
-    imageLocation: "./img/mini7.jpg",
-    recommendedBy: "Bianca"
-  },
-   {
-    name: "Spirit O corcel Indomável",
-    imageLocation: "./img/mini8.jpg",
-    recommendedBy: "Bianca"
-  },
-   {
-    name: "Fuja",
-    imageLocation: "./img/mini9.jpg",
-    recommendedBy: "Bianca"
-  },
-   {
-    name: "O lobo de wallstreet",
-    imageLocation: "./img/mini10.jpg",
-    recommendedBy: "Bianca"
-  },
-  {
-    name: "Tom and jerry",
-    imageLocation: "./img/mini11.jpg",
-    recommendedBy: "Suellen"
-  },
-  {
-    name: "Sociedade da justiça segunda guerra mundial",
-    imageLocation: "./img/mini12.jpg",
-    recommendedBy: "Suellen"
-  },
-  {
-    name: "Zack Snyder's Justice League",
-    imageLocation: "./img/mini13.jpg",
-    recommendedBy: "Suellen"
-  },
-  {
-    name: "Scooby doo e a espada",
-    imageLocation: "./img/mini14.jpg",
-    recommendedBy: "Suellen"
-  },
-  {
-    name: "Willy's Wonderland",
-    imageLocation: "./img/mini15.jpg",
-    recommendedBy: "Suellen"
-  },
-  {
-	name: "Day of the dead (85)",
-    imageLocation: "./img/mini16.jpg",
-    recommendedBy: "Conrado"
-  },
-  {
-    name: "Schools of Rock",
-    imageLocation: "./img/mini17.jpg",
-    recommendedBy: "Conrado"
-  },
-  {
-	name: "Dead Society Poets",
-    imageLocation: "./img/mini18.jpg",
-    recommendedBy: "Conrado"
-  },
-  {
-	name: "Scary Movie",
-    imageLocation: "./img/mini19.jpg",
-    recommendedBy: "Conrado"
-  },
-  {
-   name: "Gremlins",
-    imageLocation: "./img/mini20.jpg",
-    recommendedBy: "Conrado"
-  }
-];
+import Sound from "react-sound";
+import roulette_sound from "./sound/bau-da-felicidade.mp3";
+import { movies } from "./data/Movies";
+import { Poster } from "./components/Poster";
 
 function App() {
-
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
   const [index, setIndex] = useState(1);
+  const [statusSound, setStatusSound] = useState(Sound.status.STOPPED);
 
   function startRotation() {
     setIsStart(false);
@@ -129,7 +20,7 @@ function App() {
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
-    stopSound()
+    stopSound();
     generateRandomIndex(movies.length);
   }
 
@@ -138,19 +29,19 @@ function App() {
   }
 
   function handleStartButton() {
-    startRotation()
-    startSound()
+    startRotation();
+    startSound();
   }
 
   function startSound() {
-    setStatusSound(Sound.status.PLAYING)
+    setStatusSound(Sound.status.PLAYING);
   }
 
   function stopSound() {
-    setStatusSound(Sound.status.STOPPED)
+    setStatusSound(Sound.status.STOPPED);
   }
 
-  function createManyPieces(n = 20) {
+  function createManyPieces(n: number) {
     function getTransform(angle: number, i: number) {
       if (n > 2) return `rotate(${angle * i}deg) skewY(${angle - 90}deg)`;
       else
@@ -183,14 +74,14 @@ function App() {
           }}
           key={i}
         >
-           <img
-              style={{
-                overflow: "hidden",
-                height: "auto",
-                width: "100%"
-              }}
-              src={`./img/mini${i}.jpg`}
-            />
+          <img
+            style={{
+              overflow: "hidden",
+              height: "auto",
+              width: "100%",
+            }}
+            src={`./img/mini${i}.jpg`}
+          />
         </li>
       );
     }
@@ -198,30 +89,32 @@ function App() {
     return pieces;
   }
 
-  const [statusSound, setStatusSound] = useState (Sound.status.STOPPED)
   return (
     <div>
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {movies[index-1].name} </h3>
-      <Poster className={isStart ? "title" : "hidden"}
-        teste={index}/>
+      <h3 className={isStart ? "title" : "hidden"}>
+        Vencedor: {movies[index - 1].name}{" "}
+      </h3>
+      <Poster className={isStart ? "title" : "hidden"} teste={index} />
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle
         className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}
       >
-        <ul>{createManyPieces()}</ul>
+        <ul>{createManyPieces(movies.length)}</ul>
       </Circle>
-      <button className="spin-button" onClick={handleStartButton}>Gira a roleta!</button>
+      <button className="spin-button" onClick={handleStartButton}>
+        Gira a roleta!
+      </button>
 
       <button className="spin-button" onClick={stopRotation}>
         PARA TUDO!
       </button>
 
       <Sound
-          url={roulette_sound}
-          playStatus={statusSound}
-          playFromPosition={300 /* in milliseconds */}
-        />
+        url={roulette_sound}
+        playStatus={statusSound}
+        playFromPosition={300 /* in milliseconds */}
+      />
     </div>
   );
 }
@@ -247,20 +140,4 @@ function Circle(props: any) {
   );
 }
 
-
-function Poster(props: any) {
-  console.log(props.teste)
-  return (
-    <div
-      {...props}
-      style={{
-      }}
-    >
-      <img style={{ maxWidth: "200px"}}
-              src={`./img/mini${props.teste}.jpg`}
-            />
-      {props.children}
-    </div>
-  );
-}
 export default App;
