@@ -16,19 +16,6 @@ const movies: Movie[] = [
 ];
 
 function App() {
-  // const [name, setName] = useState("circle");
-
-  /*const startRotation = () => {
-    setName("circle start-rotate");
-
-    setTimeout(() => {
-      setName(
-        "circle start-rotate stop-rotate " +
-          Math.floor(Math.random() * 10000) +
-          1
-      );
-    });
-  };*/
 
   const [isRotate, setIsRotate] = useState(false);
   const [isStart, setIsStart] = useState(false);
@@ -37,24 +24,17 @@ function App() {
   function startRotation() {
     setIsStart(false);
     setIsRotate(true);
-    rodandoRodando(true)
-  };
+  }
 
   function stopRotation() {
     setIsStart(true);
     setIsRotate(false);
-    rodandoRodando(false)
-  };
+    generateRandomIndex();
+  }
 
-  function rodandoRodando(stop:boolean) {
-    let i = 0;
-    while(stop){
-      i= Math.floor(Math.random() * (20 - 1)) + 1;
-    }
-    if(!stop){
-      setIndex(i);
-    }
-  };
+  function generateRandomIndex() {
+    setIndex(Math.floor(Math.random() * (20 - 1)) + 1);
+  }
 
   function createManyPieces(n = 20) {
     function getTransform(angle: number, i: number) {
@@ -89,14 +69,14 @@ function App() {
           }}
           key={i}
         >
-          <div className="piece" contentEditable="true" spellCheck="false">
-            <img
-              style={{ overflow: "hidden", height: "auto", maxWidth: "100%",
-              maxHeight: "100%", objectFit: "fill"
-           }}
+           <img
+              style={{
+                overflow: "hidden",
+                height: "auto",
+                width: "100%"
+              }}
               src={`./img/mini${i}.jpg`}
             />
-          </div>
         </li>
       );
     }
@@ -105,16 +85,22 @@ function App() {
   }
 
   return (
-    <div >
+    <div>
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {index} </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
-      <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {index} </h3>
+      <Circle
+        className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}
+      >
         <ul>{createManyPieces()}</ul>
       </Circle>
-      <button className="spin-button" onClick={startRotation}>Gira a roleta!</button>
+      <button className="spin-button" onClick={startRotation}>
+        Gira a roleta!
+      </button>
 
-      <button className="spin-button" onClick={stopRotation}>PARA TUDO!</button>
+      <button className="spin-button" onClick={stopRotation}>
+        PARA TUDO!
+      </button>
     </div>
   );
 }
@@ -124,8 +110,8 @@ function Circle(props: any) {
     <div
       {...props}
       style={{
-        width: "25em",
-        height: "25em",
+        width: "40em",
+        height: "40em",
         border: "1px solid black",
         position: "relative",
         padding: 0,
