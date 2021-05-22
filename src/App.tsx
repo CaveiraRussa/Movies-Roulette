@@ -205,6 +205,7 @@ function App() {
       <h3 className={isStart ? "title" : "hidden"}>Vencedor: {movies[index-1].name} </h3>
       <Poster className={isStart ? "title" : "hidden"}
         teste={index}/>
+      <h3 className={isStart ? "title" : "hidden"}>Recomendado por: {movies[index-1].recommendedBy} </h3>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle
         className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}
