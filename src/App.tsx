@@ -144,6 +144,7 @@ function App() {
     let i = 0;
       i= Math.floor(Math.random() * (19 - 0)) + 0;
       setIndex(i);
+      console.log(i)
   };
 
   function createManyPieces(n = 20) {
@@ -197,7 +198,9 @@ function App() {
   return (
     <div >
       <h3 className="title">Noite de filme!</h3>
-      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {movies[index].name} </h3>
+      <h3 className={isStart ? "title" : "hidden"}>Vencedor: {movies[index-1].name} </h3>
+      <Poster className={isStart ? "title" : "hidden"}
+        teste={index}/>
       <h3 className={isRotate ? "title" : "hidden"}>Rodando rodando</h3>
       <Circle className={isRotate ? "start-rotate" : "start-rotate stop-rotate"}>
         <ul>{createManyPieces()}</ul>
@@ -225,6 +228,23 @@ function Circle(props: any) {
         overflow: "hidden",
       }}
     >
+      {props.children}
+    </div>
+  );
+}
+
+
+function Poster(props: any) {
+  console.log(props.teste)
+  return (
+    <div
+      {...props}
+      style={{
+      }}
+    >
+      <img style={{ maxWidth: "200px"}}
+              src={`./img/mini${props.teste}.jpg`}
+            />
       {props.children}
     </div>
   );

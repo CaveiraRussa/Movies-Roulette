@@ -22,4 +22,5 @@
 }
 .hidden{
   visibility: hidden;
+  max-height: 1px;
 }
