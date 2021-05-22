@@ -1,4 +1,4 @@
-interface Movie {
+export interface Movie {
   name: string;
   imageLocation: string;
   recommendedBy: string;
