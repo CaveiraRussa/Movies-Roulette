@@ -22,7 +22,7 @@ export function PosterContainer({
       <h3 className={isStart ? "title" : "hidden"}>
         Vencedor: {movies[index - 1].name}{" "}
       </h3>
-      <Poster className={isStart ? "title" : "hidden"} teste={index} />
+      <Poster className={isStart ? "title" : "hidden"} index={index} />
       <h3 className={isStart ? "title" : "hidden"}>
         Recomendado por: {movies[index - 1].recommendedBy}{" "}
       </h3>

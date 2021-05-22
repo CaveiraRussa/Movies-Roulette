@@ -5,8 +5,8 @@ export function Poster(props: any) {
         style={{
         }}
         >
-        <img style={{ maxWidth: "200px"}}
-                src={`./img/mini${props.teste}.jpg`}
+        <img style={{ width: "300px"}}
+                src={`./img/mini${props.index}.jpg`}
                 />
         {props.children}
         </div>
