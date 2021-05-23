@@ -67,8 +67,8 @@ function Circle(props: any) {
     <div
       {...props}
       style={{
-        width: "40em",
-        height: "40em",
+        width: "30em",
+        height: "30em",
         border: "1px solid black",
         position: "relative",
         padding: 0,

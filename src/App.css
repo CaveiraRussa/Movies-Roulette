@@ -1,3 +1,4 @@
+
 .start-rotate{
   animation: start-rotate 1s linear infinite;
 }
@@ -18,11 +19,23 @@
 
 .title{
   text-align: center;
-  color:white;
 }
+
+.text{
+  padding: 8px;
+  text-align: center;
+  color:white;
+  font-family: Roboto;
+  font-size: 18px;
+  height:20px;
+}
+
 .hidden{
   visibility: hidden;
-  max-height: 0px;
+  Max-height: 0px;
+  Max-width: 0px;
+  overflow: hidden;
+
 }
 
 .spin-button{
@@ -49,5 +62,5 @@
 }
 
 .screen{
-  max-width: 100%;
+  overflow: hidden;
 }
