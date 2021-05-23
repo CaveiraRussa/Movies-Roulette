@@ -51,13 +51,21 @@ function App() {
         movies={movies}
       />
       <div className={isStart ? "hidden" : "title"}>
-      <Roulette  isRotate={isRotate} movies={movies} />
+        <Roulette isRotate={isRotate} movies={movies} />
       </div>
-      <button className={isRotate ? "disble-button" :"spin-button"} onClick={handleStartButton} disabled={isRotate}>
+      <button
+        className={isRotate ? "disble-button" : "spin-button"}
+        onClick={handleStartButton}
+        disabled={isRotate}
+      >
         Gira a roleta!
       </button>
 
-      <button className={isRotate ? "spin-button" :"disble-button"} onClick={stopRotation} disabled={!isRotate}>
+      <button
+        className={isRotate ? "spin-button" : "disble-button"}
+        onClick={stopRotation}
+        disabled={!isRotate}
+      >
         PARA TUDO!
       </button>
 

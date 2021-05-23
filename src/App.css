@@ -1,15 +1,14 @@
-
-.start-rotate{
+.start-rotate {
   animation: start-rotate 1s linear infinite;
 }
 
-@keyframes start-rotate{
-  100%{
+@keyframes start-rotate {
+  100% {
     transform: rotate(360deg);
   }
 }
 
-.stop-rotate{
+.stop-rotate {
   animation-play-state: paused;
 }
 
@@ -17,50 +16,49 @@
   overflow: hidden;
 }
 
-.title{
+.title {
   text-align: center;
 }
 
-.text{
+.text {
   padding: 8px;
   text-align: center;
-  color:white;
+  color: white;
   font-family: Roboto;
   font-size: 18px;
-  height:20px;
+  height: 20px;
 }
 
-.hidden{
+.hidden {
   visibility: hidden;
-  Max-height: 0px;
-  Max-width: 0px;
+  max-height: 0px;
+  max-width: 0px;
   overflow: hidden;
-
 }
 
-.spin-button{
+.spin-button {
   background-color: rgba(255, 0, 0, 0.76);
   margin: 10px;
   height: 80px;
-  width: 180px; 
-  border-radius: 10px; 
-  border: darkcyan;;
+  width: 180px;
+  border-radius: 10px;
+  border: darkcyan;
   border: 5px solid rgb(156, 57, 11);
   background-blend-mode: hue;
   color: rgb(207, 114, 0);
 }
 
-.disble-button{
+.disble-button {
   background-color: rgba(53, 53, 53, 0.76);
   margin: 10px;
   height: 80px;
-  width: 180px; 
-  border-radius: 10px; 
+  width: 180px;
+  border-radius: 10px;
   border: 5px solid rgb(48, 48, 48);
   background-blend-mode: hue;
   color: rgb(0, 0, 0);
 }
 
-.screen{
+.screen {
   overflow: hidden;
 }

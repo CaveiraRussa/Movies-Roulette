@@ -1,6 +1,7 @@
 import React from "react";
 import { Poster } from "../components/Poster";
 import { Movie } from "../data/Movies";
+import Blink from "react-blink-text";
 
 interface PosterContainerProps {
   movies: Movie[];
@@ -26,7 +27,14 @@ export function PosterContainer({
       <h3 className={isStart ? "text" : "hidden"}>
         Recomendado por: {movies[index - 1].recommendedBy}{" "}
       </h3>
-      <h3 className={isRotate ? "text" : "hidden"}>Rodando rodando</h3>
+      <h3 className={isRotate ? "" : "hidden"}>
+        <Blink
+          color="white"
+          text="Rodando rodando"
+          fontSize="8"
+          fontFamily="Roboto"
+        ></Blink>
+      </h3>
     </>
   );
 }
